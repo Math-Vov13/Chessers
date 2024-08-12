@@ -20,12 +20,12 @@ or launch [here](Launcher.bat)
 Libraries used :
 1. pygame
 2. random
-2. time
-3. threading
-3. json
-5. math
-3. mysql
-5. webbrowser
+3. time
+4. threading
+5. json
+6. math
+7. mysql
+8. webbrowser
 
 ## License
 Mathéo Vovard
