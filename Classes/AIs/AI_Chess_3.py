@@ -41,7 +41,7 @@ def CreateTree(Positions : dict, ObjetPieces : list, CouleurPieces : dict, Coule
     Profondeurs = []
     for Piece in CouleurPieces[Couleur1]:
         Moves = Piece.Movements
-        #print(Piece, Moves)
+        ##print(Piece, Moves)
         if Moves["MoveNbr"] == 0:
             continue
 
@@ -50,7 +50,7 @@ def CreateTree(Positions : dict, ObjetPieces : list, CouleurPieces : dict, Coule
             Poids = evaluate(Move)
             N = ArbreNoeud(None, Poids, Move, Piece, Depth)
             Profondeurs.append(N)
-            #print(N.Poids)"""
+            ##print(N.Poids)"""
         
         MovesList = Moves['Empty'] + Moves['Ennemy'] + Moves['Special']
         for Key in Moves.keys():
@@ -89,7 +89,7 @@ def minimax(ArbreList : list):
 
 def FindBestMove(Positions : dict, ObjetPieces : list, CouleurPieces : dict, Couleur1 : str, Couleur2 : str, Depth : int):
     ArbreDesPossibles = CreateTree(Positions, ObjetPieces, CouleurPieces, Couleur1, Couleur2, Depth)
-    #print(ArbreDesPossibles)
+    ##print(ArbreDesPossibles)
     Noeud = minimax(ArbreDesPossibles)
     #time.sleep(1)
     return Noeud.Piece, Noeud.Position, Noeud.Situation, Noeud.CoupSpecial
@@ -107,17 +107,17 @@ class IA:
     def PlayMove(self):
 
         if GameInfos.GamePaused == False and self.Couleur == GameInfos.Tour["Couleur"]:
-            print("Calculating Next Move...")
+            #print("Calculating Next Move...")
             Piece, Pos, Situation, CP = self.FindBestMove(GameInfos.Positions, MainGame.ObjetPieces, MainGame.CouleurPieces, GameInfos.Tour["Couleur"], GameInfos.NextColor(GameInfos.Tour["Couleur"]), 3)
-            print("Le meilleur mouvement est :", Pos, " -->", GameInfos.Translate(Pos))
-            print("La situation est :", Situation)
-            print("La pièce qui effectue le meilleur mouvement est :", Piece)
+            #print("Le meilleur mouvement est :", Pos, " -->", GameInfos.Translate(Pos))
+            #print("La situation est :", Situation)
+            #print("La pièce qui effectue le meilleur mouvement est :", Piece)
             #sleep(3)
             Piece.NewPosition(Pos, Situation, CP) #Change la Position de la Pièce
 
 
     def FindBestMove(self, Positions : dict, ObjetPieces : list, CouleurPieces : dict, Couleur1 : str, Couleur2 : str, Depth : int):
         ArbreDesPossibles = CreateTree(Positions, ObjetPieces, CouleurPieces, Couleur1, Couleur2, Depth)
-        print(ArbreDesPossibles)
+        #print(ArbreDesPossibles)
         Noeud = minimax(ArbreDesPossibles)
         return Noeud.Piece, Noeud.Position, Noeud.Situation, Noeud.CoupSpecial

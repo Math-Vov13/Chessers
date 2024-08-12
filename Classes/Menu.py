@@ -1,6 +1,8 @@
 """Import des Bibliothèques"""
-import pygame, json
-from Classes import ClassBouton, ClassInputBox, MainGame, ClassEchiquier, ClassTimer # DataBase
+import pygame
+import webbrowser, json
+from Classes.Guis import ClassBouton, ClassInputBox, ClassEchiquier
+from Classes import MainGame, ClassTimer
 
 """Variables"""
 #Menu
@@ -25,7 +27,7 @@ PlrMode = str                   #Le Mode Joueur choisi (Pvp / PvE)
 
 #Joueurs
 PseudoJ1 = "Jean"               #Pseudo du Joueur 1
-PseudoJ2 = "Paul"               #Pseudo du Joueur 2
+PseudoJ2 = "Joueur2"               #Pseudo du Joueur 2
 MDPJ1 = ""                      #Pour Sauvegarder
 CouleurJ1 = "Blanc"             #Couleur Joueur1
 CouleurJ2 = "Noir"              #Couleur Joueur2
@@ -201,13 +203,11 @@ def ResetGm(Visible : bool):
 
 def ChangeEtape(LvlAdded : int):
     global level
-    print(ListBoutons[level])
     for Object in ListBoutons[level]:
         if Object in AfficheBtn:
             Index = AfficheBtn.index(Object)
             AfficheBtn.pop(Index)
     level += LvlAdded
-    #print(level, len(ListBoutons), level >= len(ListBoutons))
     if level >= len(ListBoutons): #Arrêt du programme car Bug dans le Menu ! 
         global Running
         Running = False
@@ -221,7 +221,6 @@ def ChangeEtape(LvlAdded : int):
 def UpdateMenuFrame(AddLvl : int):
     global level, GameMode, PlrMode
 
-    print("Niveau Actuel :", level)
 
     """Level du Menu"""
     if level == 1: #Menu d'Entrée
@@ -241,10 +240,9 @@ def UpdateMenuFrame(AddLvl : int):
             #Aller à Connexion
         
         else:
-            import webbrowser
             if Stats_Btn.clicked == True:
                 Stats_Btn.ResetClick()
-                webbrowser.open("http://localhost/Sites/Chessers/Pages/classement.php")
+                webbrowser.open("http://localhost/your path/Chessers/Pages/classement.php")
             elif Actus_Btn.clicked == True:
                 Actus_Btn.ResetClick()
                 webbrowser.open("https://www.europe-echecs.com/actualites.html")
@@ -389,7 +387,6 @@ def UpdateMenuFrame(AddLvl : int):
             ChangeEtape(-5)
             UpdateMenuFrame(0)
     
-    print("Niveau Après :", level)
 
     if level == 7: #Si Partie Finie
         ListTexts.append((str(GameInfos.Winner).upper() + ' a gagné', Titres, RedColor, (250, 250)))
@@ -414,8 +411,6 @@ with open('Data.txt', 'r') as fichier:	#Ouvre le fichier text
 
 PseudoJ1 = Data["Pseudo"]
 MDPJ1 = Data["MDP"]
-print(type(Data), Data)
-print(type(contenu), contenu)
 
 """Initialise l'écran de début"""
 for Object in ListBoutons[level]:
@@ -457,7 +452,6 @@ while Running == True: #Boucle Principal
     if GameInfos.GameEnded == True and GameInfos.Winner != "": #Echecs et Maths
         GameInfos.GameEnded = False
         TimerStarted = False
-        print("Pris en compte")
         UpdateMenuFrame(2)
     
     """if GameInfos.PlrMode == "PvE" and GameInfos.Tour["Couleur"] == GameInfos.Player2["Couleur"] :
@@ -531,13 +525,13 @@ while Running == True: #Boucle Principal
         elif event.type == pygame.KEYDOWN: #Quand une touche est cliqué
             if event.key == pygame.K_SPACE and GameInfos.GameStarted == True: #La Barre espace est appuyé et la partie a commencé
                 if GameInfos.GamePaused == False and GameInfos.Winner == "": #Met le Jeu en Pause
-                    print("Paused")
+                    # print("Paused")
                     GameInfos.GamePaused = True
                     if GameInfos.GameMode == "Timer":
                         PlrTimer.PauseTimer()
                     UpdateMenuFrame(1)
                 elif GameInfos.GamePaused == True and GameInfos.Winner == "": #Continue la Partie
-                    print("UnPaused")
+                    # print("UnPaused")
                     """SoundMenu.stop()
                     GameInfos.SoundPlaying = "Game"
                     SoundGame.play(100,0,4000)
@@ -565,5 +559,6 @@ while Running == True: #Boucle Principal
             if PlrTimer.UpdateTimer(Time, GameInfos.Tour["Couleur"]):
                 GameInfos.EchecetMath(GameInfos.Tour["Couleur"]) #Perds au Temps
 
+print("Stopped successfuly: Chessers")
 pygame.display.quit #Quitte la fenêtre de Jeu
 pygame.quit() #Quitte pygame

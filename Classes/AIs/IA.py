@@ -69,9 +69,7 @@ def findbestmove(board, Pieces, max_depth = 3):
     # Obtenir le joueur qui doit jouer
     current_player = MainGame.GameInfos.Tour["Couleur"]
     # Appliquer l'algorithme Minimax avec élagage Alpha-Beta
-    print(construire_arbre(board, 3, 0, "Blanc", ValeursP))
     best_move, _ = minimax(tree, max_depth, -math.inf, math.inf, True, current_player, evaluate_board, ValeursP)
-    print(best_move)
     # Retourner le meilleur mouvement et la pièce qui le fait
     return best_move[0], best_move[1]
 

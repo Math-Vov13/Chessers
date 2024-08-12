@@ -1,3 +1,3 @@
 @echo off
-PYTHON Menu.py %*
+PYTHON Main.py %*
 PAUSE

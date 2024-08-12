@@ -1,1 +1,1 @@
-{"Id" : 0, "Pseudo" : "IBlue", "MDP" : ""}
+{"Id" : 0, "Pseudo" : "Joueur1", "MDP" : "1234"}

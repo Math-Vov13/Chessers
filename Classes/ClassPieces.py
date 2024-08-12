@@ -73,7 +73,7 @@ class Pieces:
             MainGame.GameInfos.EchecetMath(self.Couleur)
 
     def NewPosition(self, Position : tuple, Situation : tuple, SpecialMove : str):              #Change la Position de la Pièce
-        print(Position, Situation, SpecialMove)
+        #print(Position, Situation, SpecialMove)
         #print(Situation)
         from Classes import MainGame
         PlaySound = SonBouger
@@ -151,7 +151,7 @@ class Pieces:
                 if Piece.Name == "Roi":                         #Vérifie que le Roi adverse n'est pas en échec
                     self.Movements['CanCaptureKing'] = True     #Si le Roi Adverse est en échec alors le noter dans la List
                     MainGame.GameInfos.IsChess[Piece.Couleur][0] = True
-                    print("LE ROI ", Piece.Couleur, " EST ATTAQUE !!!")
+                    #print("LE ROI ", Piece.Couleur, " EST ATTAQUE !!!")
 
     def InfosCase(self, Pos : tuple):
         """Fonction qui permet de connaitre les informations d'une Case. Renvoie un tuple (Team, Piece)"""
@@ -202,7 +202,8 @@ class Pieces:
     #    return MainGame.GameInfos.Positions[Pos][1].Name == 'Roi'
 
     def Promotion(self):                            #Promotion d'un Pion
-        from Classes import MainGame, ClassCavalier, ClassFou, ClassTour, ClassDame
+        from Classes import MainGame
+        from Classes.Pieces import ClassCavalier, ClassFou, ClassTour, ClassDame
         Nbr = random.randint(1, 4)                  #Le Random choisi une des 4 Pièces au hasard
         if Nbr == 1:
             MainGame.ListAfficheObj.append(ClassCavalier.Cavalier("Cavalier", self.Couleur, MainGame.ImgPieces[self.Couleur]["Cavalier"], self.Position))

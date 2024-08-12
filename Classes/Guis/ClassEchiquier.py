@@ -83,9 +83,6 @@ class Echiquier:
                 MilieuY = y + (self.taille_case + 50)
                 self.CasesPositions[(MilieuX, MilieuY)] = [Name, None] #{ (Position de la Case) : [Nom de la Case, Objet dessus] }
                 self.PiecesPositions[(MilieuX, MilieuY)] = None
-                #print(self.CasesPositions)
-        
-        print(self.CasesPositions)
 
     def Get_Positions(self): #Efface toutes les Positions de la Partie (est utilisé lors du reset de la partie)
         return self.CasesPositions

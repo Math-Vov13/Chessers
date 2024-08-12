@@ -7,7 +7,7 @@ class Roi(ClassPieces.Pieces):
     
     def AvailableMovements(self,NewPos : tuple):
         """Renvoie sous forme d'un Dictionnaire les différents Mouvements Possibles. Dict --> {'Empty' : [(Position --> Tuple, Situation --> (Team, Piece))], 'Allie' : list, 'Ennemy' : list, 'Special' : list, 'CanCaptureKing' : bool}"""
-        from Classes import MainGame, ClassCases
+        from Classes import MainGame
         self.Disabled = True
         Deplacements = {'Empty' : [], 'Allie' : [], 'Ennemy' : [], 'Special' : [], 'CanCaptureKing' : False, 'MoveNbr' : 0}
         self.Movements = Deplacements
@@ -47,7 +47,6 @@ class Roi(ClassPieces.Pieces):
                         Special = self.DetectSpecialMove(NextPos)
                         if Special == "Roque":
                             self.AddMovement('Special', (Pos, Situation[1], Special), False)
-                            print("ROQUEEEE")
                             Stop = True
 
 

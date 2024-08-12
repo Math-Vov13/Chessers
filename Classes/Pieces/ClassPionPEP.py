@@ -5,7 +5,6 @@ class PionPEP(ClassPieces.Pieces) :
         super().__init__(Piece, Couleur, '', Position)                   #Récupère la méthode __init__ de la Classe Parent, donc --> Pièces
         from Classes import MainGame
         self.Creator = Creator
-        print(self.Position)
         MainGame.GameInfos.Positions[self.Position][1] = self
         MainGame.PionPEPList[self.Couleur] = self
     

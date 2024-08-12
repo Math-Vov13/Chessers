@@ -9,7 +9,7 @@ It's my first big project <u>which uses OOP</u>
 ## Quick Start
 <u>PowerShell:</u></br>
 ```sh
-python Menu.py
+python Main.py
 ```
 
 </br>
@@ -20,7 +20,10 @@ or launch [here](Launcher.bat)
 Libraries used :
 1. pygame
 2. random
+2. time
+3. threading
 3. json
+5. math
 3. mysql
 5. webbrowser
 

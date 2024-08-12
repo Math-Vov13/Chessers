@@ -78,11 +78,8 @@ class Pion(ClassPieces.Pieces) :
             self.FirstMouv = True
             from Classes import MainGame
             if MainGame.GameInfos.GameMode != "Tradition":
-                print(self.Jump2Cases, self.Position)
                 if self.Jump2Cases[0] == False and Position == self.Jump2Cases[1]:
-                    print("Peut y avoir une Prise en Passant !! ;)")
-                    from Classes import ClassPionPEP
+                    from Classes.Pieces import ClassPionPEP
                     self.Jump2Cases[0] = True
-                    print(self.PosPEP)
                     ClassPionPEP.PionPEP("PionPEP", self.Couleur, self.PosPEP, self)
         super().NewPosition(Position, Situation, SpecialMove)                       #Récupère la Méthode de la Fonction NewPosition

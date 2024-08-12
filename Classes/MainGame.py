@@ -1,7 +1,8 @@
 """Import de toutes les Classes des Pièces pour la partie"""
 import pygame
 import threading
-from Classes import ClassEchiquier, ClassPion, ClassCavalier, ClassFou, ClassTour, ClassDame, ClassRoi
+from Classes.Guis.ClassEchiquier import Echiquier
+from Classes.Pieces import ClassPion, ClassCavalier, ClassFou, ClassTour, ClassDame, ClassRoi
 
 """Variables"""
 Lettres = ["A", "B", "C", "D", "E", "F", "G", "H", "I"] #List utilisé pour la création de l'échiquier
@@ -47,7 +48,7 @@ class Game:
         self.IsChess = {"Blanc" : [False, None], "Noir" : [False, None]}    #Couleur qui est en Echec
 
         """Echiquier"""
-        self.Echiquier = ClassEchiquier.Echiquier(8, 80, 30)                #Echiquier
+        self.Echiquier = Echiquier(8, 80, 30)                               #Echiquier
         self.Echiquier.Create(ColorCaseNoire,ColorCaseBlanche,ColorBordure) #Créer l'Echiquier
         self.StartPositions = self.Echiquier.Get_Positions()
         self.Positions = self.StartPositions                                #Positions des Pièces
@@ -99,7 +100,7 @@ class Game:
             self.TimerObj.StartTime()                                           #Démarre le Timer
         
         if self.PlrMode == "PvE":
-            from Classes import AI_Chess as AIClass  #--->AI_Chess
+            from Classes.AIs import AI_Chess as AIClass  #--->AI_Chess
             self.GameAI = AIClass.IA("Ordi", self.Player2["Couleur"], self.Player1["Couleur"], 3, False)
 
     def UpdateScreen(self):                 #Actualiser le Plateau du Jeu, pour actualiser la Position des Pièces
@@ -129,7 +130,7 @@ class Game:
             screen.blit(Object.Image, Object.HitBox)
     
     def AfficheCases(self, Piece : object, CasesList : dict):
-        from Classes import ClassCases
+        from Classes.Guis import ClassCases
         for Key in CasesList:
             if type(CasesList[Key]) != list:
                 continue
@@ -160,7 +161,7 @@ class Game:
         if self.GamePaused == False:
             self.GameChecking = True
             self.GamePaused = True
-            print(self.Positions)
+
             if self.Tour["Couleur"] == self.Player1["Couleur"]:
                 self.Tour["Couleur"] = self.Player2["Couleur"]
                 self.CreateMoves() #J'aimerai l'éviter :/
@@ -271,7 +272,7 @@ class Game:
     
     def EchecetMath(self, CouleurP : str):    #Echec et Math (Couleur du Perdant)
         """Fin de la Partie"""
-        print("ECHEC ET MATHS !!!")
+        #print("Chessmate")
         self.GamePaused = True
         self.GameEnded = True
         self.GameStarted = False
@@ -323,7 +324,7 @@ class Game:
         #NbrMoves = {'Player1' : 0, 'Player2' : 0}
         for Piece in ObjetPieces:
             #print(Piece, Piece.Position, self.Translate(Piece.Position))
-            print(Piece.AvailableMovements(Piece.Position))
+            Piece.AvailableMovements(Piece.Position)
         #print()
         
         #print(self.Positions)
@@ -346,21 +347,21 @@ class Game:
         
         self.AttackPos["Blanc"] = Positions
         self.AttackPos["Noir"] = Positions
-        print(self.AttackPos)
+        #print(self.AttackPos)
         self.FindAttackedCase(ObjetPieces)
         
-        print(self.AttackPos)
+        #print(self.AttackPos)
 
             
 
 
     def IsChessVerification(self):
         """Vérifie si un des Roi est en Echec"""
-        self.Checking = True
-        for Object in ObjetPieces:
-            print("test")
-        self.Checking = False
-        return
+        # self.Checking = True
+        # for Object in ObjetPieces:
+        #     print("test")
+        # self.Checking = False
+        pass
 
 
 """Création de la Fenêtre de Jeu"""

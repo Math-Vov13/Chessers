@@ -116,18 +116,18 @@ def get_best_move(state, depth : int):
 #                 break
 
 #         if IsFirst:
-#             print("Nombre trouvé :", Nbr)
+#             #print("Nombre trouvé :", Nbr)
 #             FirstNbr.append(Nbr)
 #             if Nbr >= Start:
 #                 Results.append(Nbr)
 #             if len(Results) == Max:
-#                 print("Fin !")
+#                 #print("Fin !")
 #                 break
 
 #         Nbr+=1
 #     return Results
 
-# print(RechercheNombrePremier(1, 10000))
+# #print(RechercheNombrePremier(1, 10000))
 
 def MiniTree(Max =4):
     if Max == 0:
@@ -148,6 +148,6 @@ def CalculCoupsWithDepth(Coups: int, Depth: int):
     return CalculCoupsWithDepth(Coups, Depth-1) + (Coups ** Depth)
 
 #New = MiniTree()
-#print(New)
-#print(len(New))
-print(CalculCoupsWithDepth(1024, 4))
+##print(New)
+##print(len(New))
+#print(CalculCoupsWithDepth(1024, 4))
